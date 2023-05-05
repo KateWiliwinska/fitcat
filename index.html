@@ -11,16 +11,27 @@
 		
 
         body {
-            
-            margin: 2em 3em;
-            font: 1.35em/1.5 'Barlow', sans-serif;
+            margin: 2em 3em 2.5em 3em;
+            font: 1.3em/1.5 'Barlow', sans-serif;
 			letter-spacing:0.5pt;
 			background: rgb(200,123,255);
 			color: white;
         }
 		
-		a, a:visited {
+		a, a:visited, a:active, body a, body a:visited, body a:active {
 			text-decoration: none;
+			color: white;
+			border-bottom: 1.5px solid;
+			padding-bottom: 0.2em;
+			transition: 0.3s;
+		}
+		
+		a:hover {
+			color: black;
+		}
+		
+		a:visited:hover {
+			color: black;
 		}
 
         .container {
@@ -29,8 +40,38 @@
             grid-template-columns: repeat(12, minmax(0,1fr));
             gap: 3em;
 			max-width: 2000px;
-			margin: auto;
+			margin: 0 auto 0 auto;
+			
         }
+		
+		.bg::after {
+			content: "";
+		 	position: absolute;
+		 	top: 50%; 
+		 	left: 0;
+		 	width: 100%; 
+		 	height: 50%;  
+		 	z-index: -1;
+			backdrop-filter: blur(8px);
+			
+		}
+		
+		.bg::before {
+		 	content: "";
+		 	position: absolute;
+		 	top: 0; 
+		 	left: 0;
+		 	width: 100%; 
+		 	height: 100%;  
+		 	opacity: 0.5; 
+		 	z-index: -1;
+			background: rgb(200,123,255);
+ 			background-image: url(https://images2.imgbox.com/a8/5e/ckS30Sxa_o.png);
+			background-blend-mode:color-burn;
+			background-size: cover;
+			background-position:center;
+			
+		}
 		
 		.menu_bar {
 			border-bottom: 2px solid white;
@@ -49,6 +90,7 @@
 			
 		}
 		
+		
 		nav a {
 			color: white;
 		}
@@ -66,7 +108,7 @@
 			
 		}
 		
-		.full_width {
+		.full_menu {
 
     		justify-content: right;
 			margin-left:0px;
@@ -77,30 +119,52 @@
 		}
 		
 		
+		
+		footer ul {
+			display: block;
+			padding-inline-start: 0;
+			list-style-type: none;
+			font-size: 0.9em;
+			line-height: 1.2;
+			
+		}
+		
+		footer ul li, footer ul li a {
+			display: inline-block;
+			position: relative;
+			margin-right: 20px;
+			color: rgba(255,255,255,0.6);
+		}
+		
 		nav.main_menu ul li, nav.main_menu ul li a {
 			display: inline-block;
 			position: relative;
+			padding: 0.1em 0.5em 0.13em 0.5em;
+			border-radius: 22px;
+			margin-right: 15px;
+			background: rgba(255,255,255,0);
 			
-			margin-right: 20px;
+			transition: 0.3s;
 			
-			border-bottom: 1px solid rgba(255,255,255,0.00);
+			border-bottom:0;
 			
 		}
 
         nav.main_menu ul li a:last-child, nav.main_menu ul li:last-child {
-            margin-right: 0px;
+            margin-right: -0.5em;
 		}
 		
-		nav.main_menu ul li a:hover, nav.main_menu ul li:hover {
+		nav.main_menu ul li a:hover {
 			
-			border-bottom: 1px solid white;
+			color: rgb(200,123,255);
+			background: white;
 		}
 		
 		header {
 			grid-column: 1 / 13;
 			grid-row: 2;
 		}
-
+		
 		article {
 		  	grid-column: 4 / 10;
 		  	grid-row: 3;
@@ -108,7 +172,6 @@
 			column-gap: 3em;
 	
 		}
-		
 		
 		article p, article h1, article h2, article h3 {
 			margin-top: 0;
@@ -142,7 +205,7 @@
 		
 
 		footer {
-		  	grid-column: 1 / 13;
+		  	grid-column: 4 / 13;
 		  	grid-row: 4;
 		}
 		
@@ -153,6 +216,7 @@
 			text-transform: uppercase;
 			font-size: 1.25em;
 			margin-bottom: 0.5em;
+			border: 0;
 		}
 		
 		.title {
@@ -188,7 +252,7 @@
 			}
 			
 			h1 {
-				font-size:1.5em;
+				font-size: 1.4em;
 			}
 
 		}
@@ -196,9 +260,9 @@
 		@media (max-width: 2100px) {
 			
 			.title {
-				font-size: 13vmin;
-				margin-top: 0.3em;
-				margin-bottom: 0.3em;
+				font-size: 12vmin;
+				margin-top: 0.4em;
+				margin-bottom: 0.4em;
 
 			}
 		}
@@ -206,7 +270,7 @@
 		@media (min-width: 2101px) {
 			
 			.title {
-				font-size: 15vmin;
+				font-size: 14vmin;
 				margin-top: 0.4em;
 				margin-bottom: 0.4em;
 
@@ -214,10 +278,10 @@
 			
   		}
 		
-		@media (max-width: 1350px) {
+		@media (max-width: 1450px) {
 			
 			.title {
-				font-size: 10vmin;
+				font-size: 12vmin;
 			}
 
 		  	article, aside.right {
@@ -235,6 +299,7 @@
 			
 			footer {
 				grid-row: 5;
+				grid-column: 5 / 13;
 			}
 			
 			h1 {
@@ -243,6 +308,10 @@
 			
 			p {
 				font-size: 1em;
+			}
+			
+			aside p:last-child {
+				margin: 0;
 			}
 			
 			
@@ -268,8 +337,23 @@
 			
 		}
 		
+		@media (min-width: 800px) {
+			.mobile_menu {
+				visibility: none;
+			}
+		}
+		
 		@media (max-width: 800px) {
 			
+			body {
+				margin: 1em 1.5em 1em 1.5em;
+			}
+			
+	
+			
+			.main_menu {
+				height: 3em;
+			}
 			.title {
 				font-size: 12vmin;
 			}
@@ -279,12 +363,16 @@
 				gap: 0;
 			}
 			
+			nav .main_menu ul li {
+				padding:0;
+			}
+			
 			header {
 				margin-top: 3em;
 				margin-bottom: 3em;
 			}
 			
-			article, aside, footer {
+			article, aside {
 				margin-bottom: 1.5em;
 			}
 			
@@ -304,17 +392,23 @@
 				grid-row: 5;
 			}
 			
+			aside p:last-child {
+				margin: 0;
+			}
+			
 			footer {
 				grid-row: 6;
+				grid-column: 1 / 13;
 			}
 			
 			h1 {
 				font-size: 1.25em;
 			}
 			
-			.white, .white a, .white a:visited {
+			.white, .white a, .white a:visited, .white a:active {
 				color: white;
 			}
+		
 			
   		}
 		
@@ -329,18 +423,18 @@
 
 
 		
-      	<div class="menu_bar">
+    <div class="menu_bar">
 			<nav class="main_menu">
 				<a href="#" id="fitcat">Fitcat</a>
-				
-				<ul class="full_width">
-					<li><a href="#">About</a></li>
-					<li><a href="#">Classes</a></li>
+				<ul class="full_menu">
+					<li><a href="#">Our story</a></li>
+					<li><a href="#">Services</a></li>
 					<li><a href="#">Contact</a></li>
    				</ul>
 			</nav>
-		</div>
+	</div>
 	
+	<div class="bg"></div>
     <div class="container">
 		
 		<header><div class="title">Fitcat fitness studio</div></header>
@@ -360,13 +454,21 @@
 		</aside>
 		
 		<aside class="right">
-			<h3 class="uppercase bold white"><a href="">Join the FITCAT gang &nbsp; ➔</a></h3>
+			<h3 class="uppercase bold white"><a href="#">Join the FITCAT gang &nbsp; ➔</a></h3>
 			<p>Join our mailing list for updates, freebies and early-bird access to upcoming events!</p>
             
 		</aside>
 		
-        <footer>Contact me@mysite.com</footer>
-    </div>
+        <footer>
+			<ul>
+				<li><a href="https://www.instagram.com/hotzcatz/">Instagram</a></li>
+				<li><a href="https://www.linkedin.com/in/sofia-zolobova-96511a58/">LinkedIn</a></li>
+				<li><a href="https://linktr.ee/hotzcatz">Linktree</a></li>
+				<li><a href="email:fitnesscatz@gmail.com">Email</a></li>
+				<li>© 2023 Fitcat</li>
+			</ul>
+		</footer>
+	</div>
 
 </body>
 
