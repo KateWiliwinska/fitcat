@@ -2,7 +2,7 @@
 
 body {
     margin: 2em 3em 2.5em 3em;
-    font: 1.3em/1.5 'Barlow', sans-serif;
+    font: 1.1em/1.5 'Barlow', sans-serif;
     letter-spacing:0.5pt;
     background: rgb(200,123,255);
     color: white;
@@ -28,40 +28,58 @@ a:visited:hover {
     display: grid;
     grid-template-columns: repeat(12, minmax(0,1fr));
     gap: 3em;
-    max-width: 2000px;
+    max-width: 1800px;
     margin: 0 auto 0 auto;
 }
 
+/* bg with blur effect
+
 .bg::after {
-    content: "";
+     content: "";
      position: absolute;
      top: 50%; 
      left: 0;
      width: 100%; 
      height: 50%;  
      z-index: -1;
-    backdrop-filter: blur(8px);
+   	 backdrop-filter: blur(8px); 
 }
 
-.bg::before {
-     content: "";
-     position: absolute;
-     top: 0; 
-     left: 0;
-     width: 100%; 
-     height: 100%;  
-     opacity: 0.5; 
-     z-index: -1;
+.bg::before {     
+	content: "";
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;  
+    opacity: 0.5; 
+    z-index: -1;
     background: rgb(200,123,255);
-     background-image: url(https://images2.imgbox.com/a8/5e/ckS30Sxa_o.png);
+    background-image: url(https://images2.imgbox.com/a8/5e/ckS30Sxa_o.png);
     background-blend-mode:color-burn;
     background-size: cover;
     background-position:center;    
+}*/
+
+.bg {
+	width: 100%; 
+    height: 100%;
+    position: fixed;
+    top: 0; 
+    left: 0;
+    opacity: 0.5;
+	z-index: -1;
+    background: rgb(200,123,255);
+    background-image: url(https://images2.imgbox.com/a8/5e/ckS30Sxa_o.png);
+    background-blend-mode:color-burn;
+    background-size: cover;
+    background-position:center;   
+	background-attachment: fixed;
 }
 
 .menu_bar {
     border-bottom: 2px solid white;
-    max-width: 2000px;
+    max-width: 1800px;
     margin: auto;
 }
 
@@ -142,8 +160,8 @@ header {
 }
 
 article {
-      grid-column: 4 / 10;
-      grid-row: 3;
+    grid-column: 4 / 10;
+    grid-row: 3;
     column-count: 2;
     column-gap: 3em;
 
@@ -194,7 +212,7 @@ footer {
 
 .title {
     text-transform: uppercase;
-    font: 8vw/1 'Roboto Flex', sans-serif;
+    font: 7.5vw/1 'Roboto Flex', sans-serif;
     font-stretch: expanded;
     align-content: middle;
     display: block;
@@ -211,40 +229,37 @@ footer {
     font-weight: bold;
 }
 
-@media (max-width: 1750px) {     
+@media (min-width: 1801px) {     
     .title {
-        font-size: 12vmin;
+        font-size: 12.5vmin;
+		margin-top: 0.5em;
+        margin-bottom: 0.5em;
     }
-    
-      article {
-        column-count: 1;
-    }
+	
+	p {
+		font-size: 1em;
+	}
     
     h1 {
-        font-size: 1.4em;
+        font-size: 1.45em;
     }
 }
 
-@media (max-width: 2100px) {
+@media (max-width: 1800px) {
     .title {
-        font-size: 12vmin;
+        font-size: 11vmin;
         margin-top: 0.4em;
         margin-bottom: 0.4em;
-
     }
-}
-
-@media (min-width: 2101px) {
-    .title {
-        font-size: 14vmin;
-        margin-top: 0.4em;
-        margin-bottom: 0.4em;
+	
+	p {
+        font-size: 0.95em;
     }
 }
 
 @media (max-width: 1450px) {
     .title {
-        font-size: 12vmin;
+        font-size: 11vmin;
     }
 
     article, aside.right {
@@ -266,11 +281,11 @@ footer {
     }
     
     h1 {
-        font-size: 1.35em;
+        font-size: 1.3em;
     }
 
     p {
-        font-size: 1em;
+        font-size: 0.85em;
     }
 
     aside p:last-child {
@@ -288,7 +303,7 @@ footer {
     }
     
     p {
-        font-size: 0.9em;
+        font-size: 0.85em;
     }
 }
 
@@ -315,6 +330,8 @@ button#mobileMenuBtn {
     border: 0;
     background: transparent;
     color: white;
+	
+	padding-top: 0;
 }
 
 button#mobileMenuBtn svg {
@@ -323,20 +340,28 @@ button#mobileMenuBtn svg {
 }
 
 ul#mobileMenu {
-    display: flex;
+    display: flex; 
     flex-direction: column;
-    justify-content: center;
+    justify-content: top;
     align-items: center;
     list-style: none;
     margin: 0;
     height: 0;
     overflow: hidden;
     transition: height 0.3s;
+	padding-inline-start: 0;
+	line-height: 2em;
+	font-weight: 600;
+    text-transform: uppercase;
+}
+
+ul#mobileMenu li a {
+	border-bottom: none;
 }
 
 ul#mobileMenu.show {
     /* Needs to have an explicit value to transition to */
-    height: 150px;
+    height: 130px;
 }
 
 @media (max-width: 800px) {
@@ -347,6 +372,7 @@ ul#mobileMenu.show {
     .main_menu {
         height: 3em;
     }
+	
     .title {
         font-size: 12vmin;
     }
